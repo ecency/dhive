@@ -102,7 +102,7 @@ export class BroadcastAPI {
      * How many milliseconds in the future to set the expiry time to when
      * broadcasting a transaction, defaults to 1 minute.
      */
-    public expireTime = 60 * 1000
+    public expireTime = 120 * 1000
 
     constructor(readonly client: Client) {}
 
