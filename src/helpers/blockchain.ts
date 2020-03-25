@@ -33,9 +33,9 @@
  * in the design, construction, operation or maintenance of any military facility.
  */
 
+import {BlockHeader, SignedBlock} from './../chain/block'
+import {AppliedOperation} from './../chain/operation'
 import {Client} from './../client'
-import {BlockHeader, SignedBlock} from './../steem/block'
-import {AppliedOperation} from './../steem/operation'
 import {iteratorStream, sleep} from './../utils'
 
 export enum BlockchainMode {

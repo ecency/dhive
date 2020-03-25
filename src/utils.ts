@@ -115,10 +115,11 @@ export async function retryingFetch(url: string, opts: any, timeout: number,
 // Hack to be able to generate a valid witness_set_properties op
 // Can hopefully be removed when steemd's JSON representation is fixed
 import * as ByteBuffer from 'bytebuffer'
+import {Asset, PriceType} from './chain/asset'
+import {WitnessSetPropertiesOperation} from './chain/operation'
+import {Serializer, Types} from './chain/serializer'
 import {PublicKey} from './crypto'
-import {Asset, PriceType} from './steem/asset'
-import {WitnessSetPropertiesOperation} from './steem/operation'
-import {Serializer, Types} from './steem/serializer'
+
 export interface WitnessProps {
     account_creation_fee?: string | Asset
     account_subsidy_budget?: number // uint32_t

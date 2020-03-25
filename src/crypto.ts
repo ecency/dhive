@@ -40,9 +40,9 @@ import {createHash} from 'crypto'
 import * as secp256k1 from 'secp256k1'
 import {VError} from 'verror'
 
+import {Types} from './chain/serializer'
+import {SignedTransaction, Transaction} from './chain/transaction'
 import {DEFAULT_ADDRESS_PREFIX, DEFAULT_CHAIN_ID} from './client'
-import {Types} from './steem/serializer'
-import {SignedTransaction, Transaction} from './steem/transaction'
 import {copy} from './utils'
 
 /**

@@ -14,11 +14,11 @@ describe('operations', function() {
 
     const client = Client.testnet({agent})
 
-    let acc1, acc2: {username: string, posting: string, active: string}
+    let acc1, acc2: {username: string, password: string}
     let acc1Key: ds.PrivateKey
     before(async function() {
         [acc1, acc2] = await getTestnetAccounts()
-        acc1Key = PrivateKey.from(acc1.active)
+        acc1Key = PrivateKey.fromLogin(acc1.username, acc1.password, 'active')
     })
 
     it('should delegate vesting shares', async function() {

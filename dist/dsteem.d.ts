@@ -3,7 +3,7 @@ declare module 'dsteem/version' {
 	export default _default;
 
 }
-declare module 'dsteem/steem/asset' {
+declare module 'dsteem/chain/asset' {
 	/**
 	 * @file Steem asset type definitions and helpers.
 	 * @author Johan Nordberg <code@johan-nordberg.com>
@@ -46,7 +46,7 @@ declare module 'dsteem/steem/asset' {
 	/**
 	 * Asset symbol string.
 	 */
-	export type AssetSymbol = 'STEEM' | 'VESTS' | 'SBD' | 'TESTS' | 'TBD';
+	export type AssetSymbol = 'HIVE' | 'VESTS' | 'HBD' | 'TESTS' | 'TBD' | 'STEEM' | 'SBD';
 	/**
 	 * Class representing a steem asset, e.g. `1.000 STEEM` or `12.112233 VESTS`.
 	 */
@@ -76,6 +76,11 @@ declare module 'dsteem/steem/asset' {
 	     * Return asset precision.
 	     */
 	    getPrecision(): number;
+	    /**
+	     * returns a representation of this asset using only STEEM SBD for
+	     * legacy purposes
+	     */
+	    steem_symbols(): Asset;
 	    /**
 	     * Return a string representation of this asset, e.g. `42.000 STEEM`.
 	     */
@@ -144,7 +149,7 @@ declare module 'dsteem/steem/asset' {
 	}
 
 }
-declare module 'dsteem/steem/account' {
+declare module 'dsteem/chain/account' {
 	/**
 	 * @file Steem account type definitions.
 	 * @author Johan Nordberg <code@johan-nordberg.com>
@@ -180,7 +185,7 @@ declare module 'dsteem/steem/account' {
 	 * in the design, construction, operation or maintenance of any military facility.
 	 */
 	import { PublicKey } from 'dsteem/crypto';
-	import { Asset } from 'dsteem/steem/asset';
+	import { Asset } from 'dsteem/chain/asset';
 	export interface AuthorityType {
 	    weight_threshold: number;
 	    account_auths: Array<[string, number]>;
@@ -291,7 +296,7 @@ declare module 'dsteem/steem/account' {
 	}
 
 }
-declare module 'dsteem/steem/misc' {
+declare module 'dsteem/chain/misc' {
 	/// <reference types="node" />
 	/**
 	 * @file Misc steem type definitions.
@@ -327,8 +332,8 @@ declare module 'dsteem/steem/misc' {
 	 * You acknowledge that this software is not designed, licensed or intended for use
 	 * in the design, construction, operation or maintenance of any military facility.
 	 */
-	import { Account } from 'dsteem/steem/account';
-	import { Asset, Price } from 'dsteem/steem/asset';
+	import { Account } from 'dsteem/chain/account';
+	import { Asset, Price } from 'dsteem/chain/asset';
 	/**
 	 * Large number that may be unsafe to represent natively in JavaScript.
 	 */
@@ -510,7 +515,7 @@ declare module 'dsteem/steem/misc' {
 	export function getVests(account: Account, subtract_delegated?: boolean, add_received?: boolean): number;
 
 }
-declare module 'dsteem/steem/serializer' {
+declare module 'dsteem/chain/serializer' {
 	/**
 	 * @file Steem protocol serialization.
 	 * @author Johan Nordberg <code@johan-nordberg.com>
@@ -548,9 +553,9 @@ declare module 'dsteem/steem/serializer' {
 	/// <reference types="node" />
 	import * as ByteBuffer from 'bytebuffer';
 	import { PublicKey } from 'dsteem/crypto';
-	import { Asset } from 'dsteem/steem/asset';
-	import { HexBuffer } from 'dsteem/steem/misc';
-	import { Operation } from 'dsteem/steem/operation';
+	import { Asset } from 'dsteem/chain/asset';
+	import { HexBuffer } from 'dsteem/chain/misc';
+	import { Operation } from 'dsteem/chain/operation';
 	export type Serializer = (buffer: ByteBuffer, data: any) => void;
 	export const Types: {
 	    Array: (itemSerializer: Serializer) => (buffer: ByteBuffer, data: any[]) => void;
@@ -645,9 +650,9 @@ declare module 'dsteem/utils' {
 	 * Fetch API wrapper that retries until timeout is reached.
 	 */
 	export function retryingFetch(url: string, opts: any, timeout: number, backoff: (tries: number) => number, fetchTimeout?: (tries: number) => number): Promise<any>;
+	import { Asset, PriceType } from 'dsteem/chain/asset';
+	import { WitnessSetPropertiesOperation } from 'dsteem/chain/operation';
 	import { PublicKey } from 'dsteem/crypto';
-	import { Asset, PriceType } from 'dsteem/steem/asset';
-	import { WitnessSetPropertiesOperation } from 'dsteem/steem/operation';
 	export interface WitnessProps {
 	    account_creation_fee?: string | Asset;
 	    account_subsidy_budget?: number;
@@ -698,7 +703,7 @@ declare module 'dsteem/crypto' {
 	 * in the design, construction, operation or maintenance of any military facility.
 	 */
 	/// <reference types="node" />
-	import { SignedTransaction, Transaction } from 'dsteem/steem/transaction';
+	import { SignedTransaction, Transaction } from 'dsteem/chain/transaction';
 	/**
 	 * Network id used in WIF-encoding.
 	 */
@@ -811,7 +816,7 @@ declare module 'dsteem/crypto' {
 	export {};
 
 }
-declare module 'dsteem/steem/comment' {
+declare module 'dsteem/chain/comment' {
 	/**
 	 * @file Steem type definitions related to comments and posting.
 	 * @author Johan Nordberg <code@johan-nordberg.com>
@@ -846,7 +851,7 @@ declare module 'dsteem/steem/comment' {
 	 * You acknowledge that this software is not designed, licensed or intended for use
 	 * in the design, construction, operation or maintenance of any military facility.
 	 */
-	import { Asset } from 'dsteem/steem/asset';
+	import { Asset } from 'dsteem/chain/asset';
 	export interface Comment {
 	    id: number;
 	    category: string;
@@ -906,7 +911,7 @@ declare module 'dsteem/steem/comment' {
 	}
 
 }
-declare module 'dsteem/steem/operation' {
+declare module 'dsteem/chain/operation' {
 	/**
 	 * @file Steem operation type definitions.
 	 * @author Johan Nordberg <code@johan-nordberg.com>
@@ -943,15 +948,15 @@ declare module 'dsteem/steem/operation' {
 	 */
 	/// <reference types="node" />
 	import { PublicKey } from 'dsteem/crypto';
-	import { AuthorityType } from 'dsteem/steem/account';
-	import { Asset, PriceType } from 'dsteem/steem/asset';
-	import { SignedBlockHeader } from 'dsteem/steem/block';
-	import { BeneficiaryRoute } from 'dsteem/steem/comment';
-	import { ChainProperties, HexBuffer } from 'dsteem/steem/misc';
+	import { AuthorityType } from 'dsteem/chain/account';
+	import { Asset, PriceType } from 'dsteem/chain/asset';
+	import { SignedBlockHeader } from 'dsteem/chain/block';
+	import { BeneficiaryRoute } from 'dsteem/chain/comment';
+	import { ChainProperties, HexBuffer } from 'dsteem/chain/misc';
 	/**
 	 * Operation name.
 	 */
-	export type OperationName = 'account_create' | 'account_create_with_delegation' | 'account_update' | 'account_witness_proxy' | 'account_witness_vote' | 'cancel_transfer_from_savings' | 'change_recovery_account' | 'claim_account' | 'claim_reward_balance' | 'comment' | 'comment_options' | 'convert' | 'create_claimed_account' | 'custom' | 'custom_binary' | 'custom_json' | 'decline_voting_rights' | 'delegate_vesting_shares' | 'delete_comment' | 'escrow_approve' | 'escrow_dispute' | 'escrow_release' | 'escrow_transfer' | 'feed_publish' | 'limit_order_cancel' | 'limit_order_create' | 'limit_order_create2' | 'pow' | 'pow2' | 'recover_account' | 'report_over_production' | 'request_account_recovery' | 'reset_account' | 'set_reset_account' | 'set_withdraw_vesting_route' | 'transfer' | 'transfer_from_savings' | 'transfer_to_savings' | 'transfer_to_vesting' | 'vote' | 'withdraw_vesting' | 'witness_set_properties' | 'witness_update';
+	export type OperationName = 'account_create' | 'account_create_with_delegation' | 'account_update' | 'account_update2' | 'account_witness_proxy' | 'account_witness_vote' | 'cancel_transfer_from_savings' | 'change_recovery_account' | 'claim_account' | 'claim_reward_balance' | 'create_proposal' | 'comment' | 'comment_options' | 'convert' | 'create_claimed_account' | 'custom' | 'custom_binary' | 'custom_json' | 'decline_voting_rights' | 'delegate_vesting_shares' | 'delete_comment' | 'escrow_approve' | 'escrow_dispute' | 'escrow_release' | 'escrow_transfer' | 'feed_publish' | 'limit_order_cancel' | 'limit_order_create' | 'limit_order_create2' | 'pow' | 'pow2' | 'recover_account' | 'remove_proposal' | 'report_over_production' | 'request_account_recovery' | 'reset_account' | 'set_reset_account' | 'set_withdraw_vesting_route' | 'transfer' | 'transfer_from_savings' | 'transfer_to_savings' | 'transfer_to_vesting' | 'update_proposal_votes' | 'vote' | 'withdraw_vesting' | 'witness_set_properties' | 'witness_update';
 	/**
 	 * Virtual operation name.
 	 */
@@ -1693,9 +1698,52 @@ declare module 'dsteem/steem/operation' {
 	        extensions: any[];
 	    };
 	}
+	export interface AccountUpdate2Operation extends Operation {
+	    0: 'account_update2';
+	    1: {
+	        account: string;
+	        owner?: AuthorityType;
+	        active?: AuthorityType;
+	        posting?: AuthorityType;
+	        memo_key?: string | PublicKey;
+	        json_metadata: string;
+	        posting_json_metadata: string;
+	        extensions: any[];
+	    };
+	}
+	export interface CreateProposalOperation extends Operation {
+	    0: 'create_proposal';
+	    1: {
+	        creator: string;
+	        receiver: string;
+	        start_date: string;
+	        end_date: string;
+	        daily_pay: Asset | string;
+	        subject: string;
+	        permlink: string;
+	        extensions: any[];
+	    };
+	}
+	export interface UpdateProposalVotesOperation extends Operation {
+	    0: 'update_proposal_votes';
+	    1: {
+	        voter: string;
+	        proposal_ids: number[];
+	        approve: boolean;
+	        extensions: any[];
+	    };
+	}
+	export interface RemoveProposalOperation extends Operation {
+	    0: 'remove_proposal';
+	    1: {
+	        proposal_owner: string;
+	        proposal_ids: number[];
+	        extensions: any[];
+	    };
+	}
 
 }
-declare module 'dsteem/steem/transaction' {
+declare module 'dsteem/chain/transaction' {
 	/**
 	 * @file Steem transaction type definitions.
 	 * @author Johan Nordberg <code@johan-nordberg.com>
@@ -1730,7 +1778,7 @@ declare module 'dsteem/steem/transaction' {
 	 * You acknowledge that this software is not designed, licensed or intended for use
 	 * in the design, construction, operation or maintenance of any military facility.
 	 */
-	import { Operation } from 'dsteem/steem/operation';
+	import { Operation } from 'dsteem/chain/operation';
 	export interface Transaction {
 	    ref_block_num: number;
 	    ref_block_prefix: number;
@@ -1749,7 +1797,7 @@ declare module 'dsteem/steem/transaction' {
 	}
 
 }
-declare module 'dsteem/steem/block' {
+declare module 'dsteem/chain/block' {
 	/**
 	 * @file Steem block type definitions.
 	 * @author Johan Nordberg <code@johan-nordberg.com>
@@ -1784,7 +1832,7 @@ declare module 'dsteem/steem/block' {
 	 * You acknowledge that this software is not designed, licensed or intended for use
 	 * in the design, construction, operation or maintenance of any military facility.
 	 */
-	import { Transaction } from 'dsteem/steem/transaction';
+	import { Transaction } from 'dsteem/chain/transaction';
 	/**
 	 * Unsigned block header.
 	 */
@@ -1848,9 +1896,9 @@ declare module 'dsteem/helpers/blockchain' {
 	 * in the design, construction, operation or maintenance of any military facility.
 	 */
 	/// <reference types="node" />
+	import { BlockHeader, SignedBlock } from 'dsteem/chain/block';
+	import { AppliedOperation } from 'dsteem/chain/operation';
 	import { Client } from 'dsteem/client';
-	import { BlockHeader, SignedBlock } from 'dsteem/steem/block';
-	import { AppliedOperation } from 'dsteem/steem/operation';
 	export enum BlockchainMode {
 	    /**
 	     * Only get irreversible blocks.
@@ -1954,12 +2002,12 @@ declare module 'dsteem/helpers/broadcast' {
 	 * You acknowledge that this software is not designed, licensed or intended for use
 	 * in the design, construction, operation or maintenance of any military facility.
 	 */
+	import { AuthorityType } from 'dsteem/chain/account';
+	import { Asset } from 'dsteem/chain/asset';
+	import { AccountUpdateOperation, CommentOperation, CommentOptionsOperation, CustomJsonOperation, DelegateVestingSharesOperation, Operation, TransferOperation, VoteOperation } from 'dsteem/chain/operation';
+	import { SignedTransaction, Transaction, TransactionConfirmation } from 'dsteem/chain/transaction';
 	import { Client } from 'dsteem/client';
 	import { PrivateKey, PublicKey } from 'dsteem/crypto';
-	import { AuthorityType } from 'dsteem/steem/account';
-	import { Asset } from 'dsteem/steem/asset';
-	import { AccountUpdateOperation, CommentOperation, CommentOptionsOperation, CustomJsonOperation, DelegateVestingSharesOperation, Operation, TransferOperation, VoteOperation } from 'dsteem/steem/operation';
-	import { SignedTransaction, Transaction, TransactionConfirmation } from 'dsteem/steem/transaction';
 	export interface CreateAccountOptions {
 	    /**
 	     * Username for the new account.
@@ -2122,15 +2170,14 @@ declare module 'dsteem/helpers/database' {
 	 * You acknowledge that this software is not designed, licensed or intended for use
 	 * in the design, construction, operation or maintenance of any military facility.
 	 */
+	import { ExtendedAccount } from 'dsteem/chain/account';
+	import { Price } from 'dsteem/chain/asset';
+	import { BlockHeader, SignedBlock } from 'dsteem/chain/block';
+	import { Discussion } from 'dsteem/chain/comment';
+	import { ChainProperties, DynamicGlobalProperties, VestingDelegation } from 'dsteem/chain/misc';
+	import { AppliedOperation } from 'dsteem/chain/operation';
+	import { SignedTransaction, TransactionConfirmation } from 'dsteem/chain/transaction';
 	import { Client } from 'dsteem/client';
-	import { ExtendedAccount } from 'dsteem/steem/account';
-	import { Price } from 'dsteem/steem/asset';
-	import { BlockHeader, SignedBlock } from 'dsteem/steem/block';
-	import { Discussion } from 'dsteem/steem/comment';
-	import { DynamicGlobalProperties } from 'dsteem/steem/misc';
-	import { ChainProperties, VestingDelegation } from 'dsteem/steem/misc';
-	import { AppliedOperation } from 'dsteem/steem/operation';
-	import { SignedTransaction, TransactionConfirmation } from 'dsteem/steem/transaction';
 	/**
 	 * Possible categories for `get_discussions_by_*`.
 	 */
@@ -2242,9 +2289,9 @@ declare module 'dsteem/helpers/database' {
 	}
 
 }
-declare module 'dsteem/steem/rc' {
-	import { SMTAsset } from 'dsteem/steem/asset';
-	import { Bignum } from 'dsteem/steem/misc';
+declare module 'dsteem/chain/rc' {
+	import { SMTAsset } from 'dsteem/chain/asset';
+	import { Bignum } from 'dsteem/chain/misc';
 	export interface RCParams {
 	    resource_history_bytes: Resource;
 	    resource_new_accounts: Resource;
@@ -2299,9 +2346,9 @@ declare module 'dsteem/steem/rc' {
 
 }
 declare module 'dsteem/helpers/rc' {
+	import { Account } from 'dsteem/chain/account';
+	import { Manabar, RCAccount, RCParams, RCPool } from 'dsteem/chain/rc';
 	import { Client } from 'dsteem/client';
-	import { Account } from 'dsteem/steem/account';
-	import { Manabar, RCAccount, RCParams, RCPool } from 'dsteem/steem/rc';
 	export class RCAPI {
 	    readonly client: Client;
 	    constructor(client: Client);
@@ -2532,14 +2579,14 @@ declare module 'dsteem' {
 	export * from 'dsteem/helpers/blockchain';
 	export * from 'dsteem/helpers/database';
 	export * from 'dsteem/helpers/rc';
-	export * from 'dsteem/steem/account';
-	export * from 'dsteem/steem/asset';
-	export * from 'dsteem/steem/block';
-	export * from 'dsteem/steem/comment';
-	export * from 'dsteem/steem/misc';
-	export * from 'dsteem/steem/operation';
-	export * from 'dsteem/steem/serializer';
-	export * from 'dsteem/steem/transaction';
+	export * from 'dsteem/chain/account';
+	export * from 'dsteem/chain/asset';
+	export * from 'dsteem/chain/block';
+	export * from 'dsteem/chain/comment';
+	export * from 'dsteem/chain/misc';
+	export * from 'dsteem/chain/operation';
+	export * from 'dsteem/chain/serializer';
+	export * from 'dsteem/chain/transaction';
 	export * from 'dsteem/client';
 	export * from 'dsteem/crypto';
 

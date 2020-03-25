@@ -33,15 +33,14 @@
  * in the design, construction, operation or maintenance of any military facility.
  */
 
+import {ExtendedAccount} from './../chain/account'
+import {Asset, Price} from './../chain/asset'
+import {BlockHeader, SignedBlock} from './../chain/block'
+import {Discussion} from './../chain/comment'
+import {ChainProperties, DynamicGlobalProperties, VestingDelegation} from './../chain/misc'
+import {AppliedOperation} from './../chain/operation'
+import {SignedTransaction, Transaction, TransactionConfirmation} from './../chain/transaction'
 import {Client} from './../client'
-import {ExtendedAccount} from './../steem/account'
-import {Asset, Price} from './../steem/asset'
-import {BlockHeader, SignedBlock} from './../steem/block'
-import {Discussion} from './../steem/comment'
-import {DynamicGlobalProperties} from './../steem/misc'
-import {ChainProperties, VestingDelegation} from './../steem/misc'
-import {AppliedOperation} from './../steem/operation'
-import {SignedTransaction, Transaction, TransactionConfirmation} from './../steem/transaction'
 
 /**
  * Possible categories for `get_discussions_by_*`.

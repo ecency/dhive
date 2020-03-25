@@ -34,12 +34,9 @@
  */
 
 import * as assert from 'assert'
-
-import {Client} from './../client'
-import {cryptoUtils, PrivateKey, PublicKey} from './../crypto'
-import {Authority, AuthorityType} from './../steem/account'
-import {Asset} from './../steem/asset'
-import {getVestingSharePrice, HexBuffer} from './../steem/misc'
+import {Authority, AuthorityType} from './../chain/account'
+import {Asset} from './../chain/asset'
+import {getVestingSharePrice, HexBuffer} from './../chain/misc'
 import {
     AccountCreateOperation,
     AccountCreateWithDelegationOperation,
@@ -53,8 +50,10 @@ import {
     Operation,
     TransferOperation,
     VoteOperation,
-} from './../steem/operation'
-import {SignedTransaction, Transaction, TransactionConfirmation} from './../steem/transaction'
+} from './../chain/operation'
+import {SignedTransaction, Transaction, TransactionConfirmation} from './../chain/transaction'
+import {Client} from './../client'
+import {cryptoUtils, PrivateKey, PublicKey} from './../crypto'
 
 export interface CreateAccountOptions {
     /**
@@ -102,7 +101,7 @@ export class BroadcastAPI {
      * How many milliseconds in the future to set the expiry time to when
      * broadcasting a transaction, defaults to 1 minute.
      */
-    public expireTime = 120 * 1000
+    public expireTime = 60 * 1000
 
     constructor(readonly client: Client) {}
 
