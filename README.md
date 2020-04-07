@@ -38,7 +38,7 @@ Or from the [unpkg](https://unpkg.com) cdn:
 <script src="https://unpkg.com/@esteemapp/dhive@latest/dist/dhive.js"></script>
 ```
 
-Make sure to set the version you want when including from the cdn, you can also use `dhive@latest` but that is not always desirable. See [unpkg.com](https://unpkg.com) for more information.
+Make sure to set the version you want when including from the cdn, you can also use `@esteemapp/dhive@latest` but that is not always desirable. See [unpkg.com](https://unpkg.com) for more information.
 
 
 Usage
@@ -47,7 +47,7 @@ Usage
 ### In the browser
 
 ```html
-<script src="https://unpkg.com/dhive@latest/dist/dhive.js"></script>
+<script src="https://unpkg.com/@esteemapp/dhive@latest/dist/dhive.js"></script>
 <script>
     var client = new dhive.Client('https://rpc.esteem.app')
     client.database.getDiscussions('trending', {tag: 'writing', limit: 1}).then(function(discussions){
