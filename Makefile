@@ -24,7 +24,7 @@ dist/%.js: lib
 
 dist/dhive.js: src/index-browser.ts
 
-dist/dsteem.d.ts: $(SRC_FILES) node_modules
+dist/dhive.d.ts: $(SRC_FILES) node_modules
 	dts-generator --name dhive --project . --out dist/dhive.d.ts
 	sed -e "s@'dhive/index'@'dhive'@g" -i '' dist/dhive.d.ts
 
@@ -65,7 +65,7 @@ node_modules:
 docs: $(SRC_FILES) node_modules
 	typedoc --gitRevision master --target ES6 --mode file --out docs src
 	find docs -name "*.html" | xargs sed -i '' 's~$(shell pwd)~.~g'
-	echo "Served at <https://esteemapp.github.io/dsteem/>" > docs/README.md
+	echo "Served at <https://esteemapp.github.io/dhive/>" > docs/README.md
 	touch docs
 
 .PHONY: clean

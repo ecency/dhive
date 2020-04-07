@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ClientOptions | @esteemapp/dsteem</title>
+	<title>ClientOptions | @esteemapp/dhive</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">@esteemapp/dsteem</a>
+					<a href="../index.html" class="title">@esteemapp/dhive</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -92,6 +92,7 @@
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="clientoptions.html#agent" class="tsd-kind-icon">agent</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="clientoptions.html#backoff" class="tsd-kind-icon">backoff</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="clientoptions.html#chainid" class="tsd-kind-icon">chain<wbr>Id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="clientoptions.html#failoverthreshold" class="tsd-kind-icon">failover<wbr>Threshold</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="clientoptions.html#timeout" class="tsd-kind-icon">timeout</a></li>
 							</ul>
 						</section>
@@ -122,7 +123,7 @@
 					<div class="tsd-signature tsd-kind-icon">agent<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/esteemapp/dsteem/blob/master/src/client.ts#L142">client.ts:142</a></li>
+							<li>Defined in <a href="https://github.com/esteemapp/dsteem/blob/master/src/client.ts#L149">client.ts:149</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -143,7 +144,7 @@
 					<div class="tsd-signature tsd-kind-icon">backoff<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/esteemapp/dsteem/blob/master/src/client.ts#L136">client.ts:136</a></li>
+							<li>Defined in <a href="https://github.com/esteemapp/dsteem/blob/master/src/client.ts#L143">client.ts:143</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -165,6 +166,24 @@
 						<div class="lead">
 							<p>Steem chain id. Defaults to main steem network:
 							<code>0000000000000000000000000000000000000000000000000000000000000000</code></p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="failoverthreshold" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> failover<wbr>Threshold</h3>
+					<div class="tsd-signature tsd-kind-icon">failover<wbr>Threshold<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/esteemapp/dsteem/blob/master/src/client.ts#L139">client.ts:139</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Specifies the amount of times the urls (RPC nodes) should be
+								iterated and retried in case of timeout errors.
+								(important) Requires url parameter to be an array (string[])!
+							Can be set to 0 to iterate and retry forever. Defaults to 3 rounds.</p>
 						</div>
 					</div>
 				</section>
@@ -215,6 +234,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="clientoptions.html#chainid" class="tsd-kind-icon">chain<wbr>Id</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="clientoptions.html#failoverthreshold" class="tsd-kind-icon">failover<wbr>Threshold</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="clientoptions.html#timeout" class="tsd-kind-icon">timeout</a>
