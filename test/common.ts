@@ -5,7 +5,7 @@ import {randomBytes} from 'crypto'
 
 export const NUM_TEST_ACCOUNTS = 2
 export const IS_BROWSER = global['isBrowser'] === true
-export const TEST_NODE = process.env['TEST_NODE'] || 'https://api.steemit.com'
+export const TEST_NODE = process.env['TEST_NODE'] || 'https://rpc.esteem.app'
 
 export const agent = IS_BROWSER ? undefined : new https.Agent({keepAlive: true})
 
@@ -38,7 +38,7 @@ export function randomString(length: number) {
 export async function createAccount(): Promise<{username: string, password: string}> {
     const password = randomString(32)
     const username = `dsteem-${ randomString(9) }`
-    const response = await fetch('https://testnet.steem.vc/create', {
+    const response = await fetch('https://testnet.esteem.app/signup', {
         method: 'POST',
         body: `username=${ username }&password=${ password }`,
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
