@@ -281,7 +281,7 @@ export class Client {
             fetchTimeout = (tries) => (tries + 1) * 500
         }
         const {response, currentAddress}: {response: RPCResponse, currentAddress: string} =
-        await retryingFetch(this.currentAddress, this.address, opts, this.timeout, this.backoff, fetchTimeout)
+        await retryingFetch(this.currentAddress, this.address, opts, this.timeout, this.failoverThreshold, this.backoff, fetchTimeout)
 
         // After failover, change the currently active address
         if (currentAddress !== this.currentAddress) {
