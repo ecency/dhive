@@ -1,14 +1,14 @@
 {
-  "name": "@esteemapp/dsteem",
-  "version": "0.11.5",
-  "description": "Steem blockchain RPC client library",
+  "name": "@esteemapp/dhive",
+  "version": "0.11.6",
+  "description": "Jove blockchain RPC client library",
   "author": "Johan Nordberg",
   "license": "BSD-3-Clause",
   "main": "./lib/index-node",
   "typings": "./lib/index",
   "browser": {
-    "./lib/index-node": "./dist/dsteem.js",
-    "./src/index-node": "./dist/dsteem.js",
+    "./lib/index-node": "./dist/dhive.js",
+    "./src/index-node": "./dist/dhive.js",
     "./src/version": "./lib/version.js"
   },
   "files": [
@@ -27,8 +27,8 @@
     "blockchain",
     "client",
     "rpc",
-    "steem",
-    "steemit"
+    "hive",
+    "esteem"
   ],
   "dependencies": {
     "bs58": "^4.0.1",

@@ -38,6 +38,7 @@ import {PassThrough} from 'stream'
 import {VError} from 'verror'
 
 const fetch = global['fetch'] // tslint:disable-line:no-string-literal
+const timeoutErrors = ['request-timeout', 'ENOTFOUND', 'ECONNREFUSED']
 
 /**
  * Return a promise that will resove when a specific event is emitted.
@@ -88,28 +89,68 @@ export function copy<T>(object: T): T {
 /**
  * Fetch API wrapper that retries until timeout is reached.
  */
-export async function retryingFetch(url: string, opts: any, timeout: number,
-                                    backoff: (tries: number) => number,
-                                    fetchTimeout?: (tries: number) => number) {
-    const start = Date.now()
+export async function retryingFetch(
+    currentAddress: string,
+    allAddresses: string | string[],
+    opts: any,
+    timeout: number,
+    failoverThreshold: number,
+    backoff: (tries: number) => number,
+    fetchTimeout?: (tries: number) => number) {
+    let start = Date.now()
     let tries = 0
+    let round = 0
     do {
         try {
             if (fetchTimeout) {
                 opts.timeout = fetchTimeout(tries)
             }
-            const response = await fetch(url, opts)
+            const response = await fetch(currentAddress, opts)
             if (!response.ok) {
                 throw new Error(`HTTP ${ response.status }: ${ response.statusText }`)
             }
-            return await response.json()
+            return {response: await response.json(), currentAddress}
         } catch (error) {
             if (timeout !== 0 && Date.now() - start > timeout) {
+                if (
+                    timeoutErrors.includes(error.code) &&
+                    Array.isArray(allAddresses) &&
+                    allAddresses.length > 1
+                  ) {
+                    if (round < failoverThreshold) {
+                      start = Date.now()
+                      tries = -1
+                      if (failoverThreshold > 0) {
+                        round++
+                      }
+                      currentAddress = failover(currentAddress, allAddresses)
+                    } else {
+                      if (
+                        timeoutErrors.includes(error.code) &&
+                        Array.isArray(allAddresses)
+                      ) {
+                        error.message = `[${
+                          error.code
+                        }] tried ${failoverThreshold} times with ${allAddresses.join(
+                          ','
+                        )}`
+                        throw error
+                      } else {
+                        throw error
+                      }
+                    }
+                } else {
                 throw error
+                }
             }
             await sleep(backoff(tries++))
         }
     } while (true)
+}
+
+const failover = (url: string, urls: string[]) => {
+    const index = urls.indexOf(url)
+    return urls.length === index + 1 ? urls[0] : urls[index + 1]
 }
 
 // Hack to be able to generate a valid witness_set_properties op

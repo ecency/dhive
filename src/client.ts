@@ -131,6 +131,13 @@ export interface ClientOptions {
      */
     timeout?: number
     /**
+     * Specifies the amount of times the urls (RPC nodes) should be
+     * iterated and retried in case of timeout errors.
+     * (important) Requires url parameter to be an array (string[])!
+     * Can be set to 0 to iterate and retry forever. Defaults to 3 rounds.
+     */
+    failoverThreshold?: number
+    /**
      * Retry backoff function, returns milliseconds. Default = {@link defaultBackoff}.
      */
     backoff?: (tries: number) => number
@@ -172,7 +179,7 @@ export class Client {
     /**
      * Address to Steem RPC server, *read-only*.
      */
-    public readonly address: string
+    public readonly address: string | string[]
 
     /**
      * Database API helper.
@@ -208,11 +215,16 @@ export class Client {
     private timeout: number
     private backoff: typeof defaultBackoff
 
+    private failoverThreshold: number
+
+    private currentAddress: string
+
     /**
      * @param address The address to the Steem RPC server, e.g. `https://api.steemit.com`.
      * @param options Client options.
      */
-    constructor(address: string, options: ClientOptions = {}) {
+    constructor(address: string | string[], options: ClientOptions = {}) {
+        this.currentAddress = Array.isArray(address) ? address[0] : address
         this.address = address
         this.options = options
 
@@ -222,6 +234,7 @@ export class Client {
 
         this.timeout = options.timeout || 60 * 1000
         this.backoff = options.backoff || defaultBackoff
+        this.failoverThreshold = options.failoverThreshold || 3
 
         this.database = new DatabaseAPI(this)
         this.broadcast = new BroadcastAPI(this)
@@ -254,7 +267,7 @@ export class Client {
         const opts: any = {
             body,
             cache: 'no-cache',
-            headers: {'User-Agent': `dsteem/${ packageVersion }`},
+            headers: {'User-Agent': `dhive/${ packageVersion }`},
             method: 'POST',
             mode: 'cors',
         }
@@ -267,9 +280,14 @@ export class Client {
             // only effective in node.js (until timeout spec lands in browsers)
             fetchTimeout = (tries) => (tries + 1) * 500
         }
-        const response: RPCResponse = await retryingFetch(
-            this.address, opts, this.timeout, this.backoff, fetchTimeout
-        )
+        const {response, currentAddress}: {response: RPCResponse, currentAddress: string} =
+        await retryingFetch(this.currentAddress, this.address, opts, this.timeout, this.backoff, fetchTimeout)
+
+        // After failover, change the currently active address
+        if (currentAddress !== this.currentAddress) {
+            this.currentAddress = currentAddress
+        }
+
         // resolve FC error messages into something more readable
         if (response.error) {
             const formatValue = (value: any) => {
