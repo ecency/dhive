@@ -1,6 +1,6 @@
 {
   "name": "@esteemapp/dhive",
-  "version": "0.11.7",
+  "version": "0.12.0",
   "description": "Hive blockchain RPC client library",
   "author": "Johan Nordberg",
   "license": "BSD-3-Clause",

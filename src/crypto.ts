@@ -135,10 +135,10 @@ function isCanonicalSignature(signature: Buffer): boolean {
     )
 }
 
-function isWif(privWif: Buffer): boolean {
+function isWif(privWif: string): boolean {
     let isWiff = false
     try {
-        const bufWif: Buffer = bs58.decode(privWif)
+        const bufWif = new Buffer(bs58.decode(privWif))
         const privKey = bufWif.slice(0, -4)
         const checksum = bufWif.slice(-4)
         let newChecksum = sha256(privKey)
