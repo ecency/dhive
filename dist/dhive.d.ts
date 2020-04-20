@@ -710,7 +710,7 @@ declare module 'dhive/crypto' {
 	/**
 	 * Network id used in WIF-encoding.
 	 */
-	export const NETWORK_ID: Buffer; function ripemd160(input: Buffer | string): Buffer; function sha256(input: Buffer | string): Buffer; function doubleSha256(input: Buffer | string): Buffer; function encodePublic(key: Buffer, prefix: string): string; function encodePrivate(key: Buffer): string; function decodePrivate(encodedKey: string): Buffer; function isCanonicalSignature(signature: Buffer): boolean;
+	export const NETWORK_ID: Buffer; function ripemd160(input: Buffer | string): Buffer; function sha256(input: Buffer | string): Buffer; function doubleSha256(input: Buffer | string): Buffer; function bs58decode(input: Buffer | string): Buffer; function encodePublic(key: Buffer, prefix: string): string; function encodePrivate(key: Buffer): string; function decodePrivate(encodedKey: string): Buffer; function isCanonicalSignature(signature: Buffer): boolean; function isWif(privWif: Buffer): boolean;
 	/**
 	 * ECDSA (secp256k1) public key.
 	 */
@@ -806,11 +806,13 @@ declare module 'dhive/crypto' {
 	} function transactionDigest(transaction: Transaction | SignedTransaction, chainId?: Buffer): Buffer; function signTransaction(transaction: Transaction, keys: PrivateKey | PrivateKey[], chainId?: Buffer): SignedTransaction;
 	/** Misc crypto utility functions. */
 	export const cryptoUtils: {
+	    bs58decode: typeof bs58decode;
 	    decodePrivate: typeof decodePrivate;
 	    doubleSha256: typeof doubleSha256;
 	    encodePrivate: typeof encodePrivate;
 	    encodePublic: typeof encodePublic;
 	    isCanonicalSignature: typeof isCanonicalSignature;
+	    isWif: typeof isWif;
 	    ripemd160: typeof ripemd160;
 	    sha256: typeof sha256;
 	    signTransaction: typeof signTransaction;

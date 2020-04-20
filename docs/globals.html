@@ -235,6 +235,7 @@
 								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#uint64serializer" class="tsd-kind-icon">UInt64<wbr>Serializer</a></li>
 								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#uint8serializer" class="tsd-kind-icon">UInt8<wbr>Serializer</a></li>
 								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#voidserializer" class="tsd-kind-icon">Void<wbr>Serializer</a></li>
+								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#bs58decode" class="tsd-kind-icon">bs58decode</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#buildwitnessupdateop" class="tsd-kind-icon">build<wbr>Witness<wbr>Update<wbr>Op</a></li>
 								<li class="tsd-kind-function tsd-has-type-parameter"><a href="globals.html#copy" class="tsd-kind-icon">copy</a></li>
 								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#decodeprivate" class="tsd-kind-icon">decode<wbr>Private</a></li>
@@ -247,6 +248,7 @@
 								<li class="tsd-kind-function"><a href="globals.html#getvestingshareprice" class="tsd-kind-icon">get<wbr>Vesting<wbr>Share<wbr>Price</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#getvests" class="tsd-kind-icon">get<wbr>Vests</a></li>
 								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#iscanonicalsignature" class="tsd-kind-icon">is<wbr>Canonical<wbr>Signature</a></li>
+								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#iswif" class="tsd-kind-icon">is<wbr>Wif</a></li>
 								<li class="tsd-kind-function tsd-has-type-parameter"><a href="globals.html#iteratorstream" class="tsd-kind-icon">iterator<wbr>Stream</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#retryingfetch" class="tsd-kind-icon">retrying<wbr>Fetch</a></li>
 								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#ripemd160" class="tsd-kind-icon">ripemd160</a></li>
@@ -321,7 +323,7 @@
 					<div class="tsd-signature tsd-kind-icon">Key<wbr>Role<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"owner"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"active"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"posting"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"memo"</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/esteemapp/dsteem/blob/master/src/crypto.ts#L191">crypto.ts:191</a></li>
+							<li>Defined in <a href="https://github.com/esteemapp/dsteem/blob/master/src/crypto.ts#L216">crypto.ts:216</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1132,6 +1134,34 @@
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-is-not-exported">
+					<a name="bs58decode" class="tsd-anchor"></a>
+					<h3>bs58decode</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">bs58decode<span class="tsd-signature-symbol">(</span>input<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/esteemapp/dsteem/blob/master/src/crypto.ts#L77">crypto.ts:77</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return bs58 decode of input.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>input: <span class="tsd-signature-type">Buffer</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Buffer</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function">
 					<a name="buildwitnessupdateop" class="tsd-anchor"></a>
 					<h3>build<wbr>Witness<wbr>Update<wbr>Op</h3>
@@ -1202,7 +1232,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/esteemapp/dsteem/blob/master/src/crypto.ts#L109">crypto.ts:109</a></li>
+									<li>Defined in <a href="https://github.com/esteemapp/dsteem/blob/master/src/crypto.ts#L116">crypto.ts:116</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1230,7 +1260,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/esteemapp/dsteem/blob/master/src/crypto.ts#L85">crypto.ts:85</a></li>
+									<li>Defined in <a href="https://github.com/esteemapp/dsteem/blob/master/src/crypto.ts#L92">crypto.ts:92</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1323,7 +1353,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/esteemapp/dsteem/blob/master/src/crypto.ts#L100">crypto.ts:100</a></li>
+									<li>Defined in <a href="https://github.com/esteemapp/dsteem/blob/master/src/crypto.ts#L107">crypto.ts:107</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1351,7 +1381,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/esteemapp/dsteem/blob/master/src/crypto.ts#L77">crypto.ts:77</a></li>
+									<li>Defined in <a href="https://github.com/esteemapp/dsteem/blob/master/src/crypto.ts#L84">crypto.ts:84</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1470,7 +1500,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/esteemapp/dsteem/blob/master/src/crypto.ts#L122">crypto.ts:122</a></li>
+									<li>Defined in <a href="https://github.com/esteemapp/dsteem/blob/master/src/crypto.ts#L129">crypto.ts:129</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1482,6 +1512,29 @@
 							<ul class="tsd-parameters">
 								<li>
 									<h5>signature: <span class="tsd-signature-type">Buffer</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-is-not-exported">
+					<a name="iswif" class="tsd-anchor"></a>
+					<h3>is<wbr>Wif</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Wif<span class="tsd-signature-symbol">(</span>privWif<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/esteemapp/dsteem/blob/master/src/crypto.ts#L138">crypto.ts:138</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>privWif: <span class="tsd-signature-type">Buffer</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -1678,7 +1731,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/esteemapp/dsteem/blob/master/src/crypto.ts#L338">crypto.ts:338</a></li>
+									<li>Defined in <a href="https://github.com/esteemapp/dsteem/blob/master/src/crypto.ts#L363">crypto.ts:363</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1746,7 +1799,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/esteemapp/dsteem/blob/master/src/crypto.ts#L318">crypto.ts:318</a></li>
+									<li>Defined in <a href="https://github.com/esteemapp/dsteem/blob/master/src/crypto.ts#L343">crypto.ts:343</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2066,7 +2119,7 @@
 					<div class="tsd-signature tsd-kind-icon">crypto<wbr>Utils<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/esteemapp/dsteem/blob/master/src/crypto.ts#L359">crypto.ts:359</a></li>
+							<li>Defined in <a href="https://github.com/esteemapp/dsteem/blob/master/src/crypto.ts#L384">crypto.ts:384</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -2075,12 +2128,22 @@
 						</div>
 					</div>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="cryptoutils.bs58decode" class="tsd-anchor"></a>
+						<h3>bs58decode</h3>
+						<div class="tsd-signature tsd-kind-icon">bs58decode<span class="tsd-signature-symbol">:</span> <a href="globals.html#bs58decode" class="tsd-signature-type">bs58decode</a></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/esteemapp/dsteem/blob/master/src/crypto.ts#L385">crypto.ts:385</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
 						<a name="cryptoutils.decodeprivate" class="tsd-anchor"></a>
 						<h3>decode<wbr>Private</h3>
 						<div class="tsd-signature tsd-kind-icon">decode<wbr>Private<span class="tsd-signature-symbol">:</span> <a href="globals.html#decodeprivate" class="tsd-signature-type">decodePrivate</a></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/esteemapp/dsteem/blob/master/src/crypto.ts#L360">crypto.ts:360</a></li>
+								<li>Defined in <a href="https://github.com/esteemapp/dsteem/blob/master/src/crypto.ts#L386">crypto.ts:386</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -2090,7 +2153,7 @@
 						<div class="tsd-signature tsd-kind-icon">double<wbr>Sha256<span class="tsd-signature-symbol">:</span> <a href="globals.html#doublesha256" class="tsd-signature-type">doubleSha256</a></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/esteemapp/dsteem/blob/master/src/crypto.ts#L361">crypto.ts:361</a></li>
+								<li>Defined in <a href="https://github.com/esteemapp/dsteem/blob/master/src/crypto.ts#L387">crypto.ts:387</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -2100,7 +2163,7 @@
 						<div class="tsd-signature tsd-kind-icon">encode<wbr>Private<span class="tsd-signature-symbol">:</span> <a href="globals.html#encodeprivate" class="tsd-signature-type">encodePrivate</a></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/esteemapp/dsteem/blob/master/src/crypto.ts#L362">crypto.ts:362</a></li>
+								<li>Defined in <a href="https://github.com/esteemapp/dsteem/blob/master/src/crypto.ts#L388">crypto.ts:388</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -2110,7 +2173,7 @@
 						<div class="tsd-signature tsd-kind-icon">encode<wbr>Public<span class="tsd-signature-symbol">:</span> <a href="globals.html#encodepublic" class="tsd-signature-type">encodePublic</a></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/esteemapp/dsteem/blob/master/src/crypto.ts#L363">crypto.ts:363</a></li>
+								<li>Defined in <a href="https://github.com/esteemapp/dsteem/blob/master/src/crypto.ts#L389">crypto.ts:389</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -2120,7 +2183,17 @@
 						<div class="tsd-signature tsd-kind-icon">is<wbr>Canonical<wbr>Signature<span class="tsd-signature-symbol">:</span> <a href="globals.html#iscanonicalsignature" class="tsd-signature-type">isCanonicalSignature</a></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/esteemapp/dsteem/blob/master/src/crypto.ts#L364">crypto.ts:364</a></li>
+								<li>Defined in <a href="https://github.com/esteemapp/dsteem/blob/master/src/crypto.ts#L390">crypto.ts:390</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="cryptoutils.iswif" class="tsd-anchor"></a>
+						<h3>is<wbr>Wif</h3>
+						<div class="tsd-signature tsd-kind-icon">is<wbr>Wif<span class="tsd-signature-symbol">:</span> <a href="globals.html#iswif" class="tsd-signature-type">isWif</a></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/esteemapp/dsteem/blob/master/src/crypto.ts#L391">crypto.ts:391</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -2130,7 +2203,7 @@
 						<div class="tsd-signature tsd-kind-icon">ripemd160<span class="tsd-signature-symbol">:</span> <a href="globals.html#ripemd160" class="tsd-signature-type">ripemd160</a></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/esteemapp/dsteem/blob/master/src/crypto.ts#L365">crypto.ts:365</a></li>
+								<li>Defined in <a href="https://github.com/esteemapp/dsteem/blob/master/src/crypto.ts#L392">crypto.ts:392</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -2140,7 +2213,7 @@
 						<div class="tsd-signature tsd-kind-icon">sha256<span class="tsd-signature-symbol">:</span> <a href="globals.html#sha256" class="tsd-signature-type">sha256</a></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/esteemapp/dsteem/blob/master/src/crypto.ts#L366">crypto.ts:366</a></li>
+								<li>Defined in <a href="https://github.com/esteemapp/dsteem/blob/master/src/crypto.ts#L393">crypto.ts:393</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -2150,7 +2223,7 @@
 						<div class="tsd-signature tsd-kind-icon">sign<wbr>Transaction<span class="tsd-signature-symbol">:</span> <a href="globals.html#signtransaction" class="tsd-signature-type">signTransaction</a></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/esteemapp/dsteem/blob/master/src/crypto.ts#L367">crypto.ts:367</a></li>
+								<li>Defined in <a href="https://github.com/esteemapp/dsteem/blob/master/src/crypto.ts#L394">crypto.ts:394</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -2160,7 +2233,7 @@
 						<div class="tsd-signature tsd-kind-icon">transaction<wbr>Digest<span class="tsd-signature-symbol">:</span> <a href="globals.html#transactiondigest" class="tsd-signature-type">transactionDigest</a></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/esteemapp/dsteem/blob/master/src/crypto.ts#L368">crypto.ts:368</a></li>
+								<li>Defined in <a href="https://github.com/esteemapp/dsteem/blob/master/src/crypto.ts#L395">crypto.ts:395</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -2597,6 +2670,9 @@
 					<li class=" tsd-kind-function tsd-is-not-exported">
 						<a href="globals.html#voidserializer" class="tsd-kind-icon">Void<wbr>Serializer</a>
 					</li>
+					<li class=" tsd-kind-function tsd-is-not-exported">
+						<a href="globals.html#bs58decode" class="tsd-kind-icon">bs58decode</a>
+					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#buildwitnessupdateop" class="tsd-kind-icon">build<wbr>Witness<wbr>Update<wbr>Op</a>
 					</li>
@@ -2632,6 +2708,9 @@
 					</li>
 					<li class=" tsd-kind-function tsd-is-not-exported">
 						<a href="globals.html#iscanonicalsignature" class="tsd-kind-icon">is<wbr>Canonical<wbr>Signature</a>
+					</li>
+					<li class=" tsd-kind-function tsd-is-not-exported">
+						<a href="globals.html#iswif" class="tsd-kind-icon">is<wbr>Wif</a>
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
 						<a href="globals.html#iteratorstream" class="tsd-kind-icon">iterator<wbr>Stream</a>

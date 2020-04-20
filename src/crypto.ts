@@ -72,6 +72,13 @@ function doubleSha256(input: Buffer | string): Buffer {
 }
 
 /**
+ * Return bs58 decode of input.
+ */
+function bs58decode(input: Buffer | string): Buffer {
+    return bs58.decode(input)
+}
+
+/**
  * Encode public key with bs58+ripemd160-checksum.
  */
 function encodePublic(key: Buffer, prefix: string): string {
@@ -126,6 +133,24 @@ function isCanonicalSignature(signature: Buffer): boolean {
         !(signature[32] & 0x80) &&
         !(signature[32] === 0 && !(signature[33] & 0x80))
     )
+}
+
+function isWif(privWif: Buffer): boolean {
+    let isWiff = false
+    try {
+        const bufWif: Buffer = bs58.decode(privWif)
+        const privKey = bufWif.slice(0, -4)
+        const checksum = bufWif.slice(-4)
+        let newChecksum = sha256(privKey)
+        newChecksum = sha256(newChecksum)
+        newChecksum = newChecksum.slice(0, 4)
+        if (checksum.toString() === newChecksum.toString()) {
+            isWiff = true
+        }
+    } catch (e) {
+        return false
+    }
+    return isWiff
 }
 
 /**
@@ -357,11 +382,13 @@ function signTransaction(
 
 /** Misc crypto utility functions. */
 export const cryptoUtils = {
+    bs58decode,
     decodePrivate,
     doubleSha256,
     encodePrivate,
     encodePublic,
     isCanonicalSignature,
+    isWif,
     ripemd160,
     sha256,
     signTransaction,
