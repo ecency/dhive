@@ -13,6 +13,7 @@
     "semicolon": [true, "never"],
     "trailing-comma": [true, "never"],
     "triple-equals": [true, "allow-undefined-check"],
-    "variable-name": false
+    "variable-name": false,
+    "no-string-literal": false
   }
 }

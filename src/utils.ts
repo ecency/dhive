@@ -37,6 +37,14 @@ import {EventEmitter} from 'events'
 import {PassThrough} from 'stream'
 import {VError} from 'verror'
 
+// Hack to be able to generate a valid witness_set_properties op
+// Can hopefully be removed when steemd's JSON representation is fixed
+import * as ByteBuffer from 'bytebuffer'
+import {Asset, PriceType} from './chain/asset'
+import {WitnessSetPropertiesOperation} from './chain/operation'
+import {Serializer, Types} from './chain/serializer'
+import {PublicKey} from './crypto'
+
 const fetch = global['fetch'] // tslint:disable-line:no-string-literal
 const timeoutErrors = ['request-timeout', 'ENOTFOUND', 'ECONNREFUSED']
 
@@ -152,14 +160,6 @@ const failover = (url: string, urls: string[]) => {
     const index = urls.indexOf(url)
     return urls.length === index + 1 ? urls[0] : urls[index + 1]
 }
-
-// Hack to be able to generate a valid witness_set_properties op
-// Can hopefully be removed when steemd's JSON representation is fixed
-import * as ByteBuffer from 'bytebuffer'
-import {Asset, PriceType} from './chain/asset'
-import {WitnessSetPropertiesOperation} from './chain/operation'
-import {Serializer, Types} from './chain/serializer'
-import {PublicKey} from './crypto'
 
 export interface WitnessProps {
     account_creation_fee?: string | Asset

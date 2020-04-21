@@ -630,6 +630,9 @@ declare module 'dhive/utils' {
 	 */
 	/// <reference types="node" />
 	import { EventEmitter } from 'events';
+	import { Asset, PriceType } from 'dhive/chain/asset';
+	import { WitnessSetPropertiesOperation } from 'dhive/chain/operation';
+	import { PublicKey } from 'dhive/crypto';
 	/**
 	 * Return a promise that will resove when a specific event is emitted.
 	 */
@@ -653,9 +656,6 @@ declare module 'dhive/utils' {
 	    response: any;
 	    currentAddress: string;
 	}>;
-	import { Asset, PriceType } from 'dhive/chain/asset';
-	import { WitnessSetPropertiesOperation } from 'dhive/chain/operation';
-	import { PublicKey } from 'dhive/crypto';
 	export interface WitnessProps {
 	    account_creation_fee?: string | Asset;
 	    account_subsidy_budget?: number;
@@ -710,7 +710,7 @@ declare module 'dhive/crypto' {
 	/**
 	 * Network id used in WIF-encoding.
 	 */
-	export const NETWORK_ID: Buffer; function ripemd160(input: Buffer | string): Buffer; function sha256(input: Buffer | string): Buffer; function doubleSha256(input: Buffer | string): Buffer; function bs58decode(input: Buffer | string): Buffer; function encodePublic(key: Buffer, prefix: string): string; function encodePrivate(key: Buffer): string; function decodePrivate(encodedKey: string): Buffer; function isCanonicalSignature(signature: Buffer): boolean; function isWif(privWif: string): boolean;
+	export const NETWORK_ID: Buffer; function ripemd160(input: Buffer | string): Buffer; function sha256(input: Buffer | string): Buffer; function doubleSha256(input: Buffer | string): Buffer; function encodePublic(key: Buffer, prefix: string): string; function encodePrivate(key: Buffer): string; function decodePrivate(encodedKey: string): Buffer; function isCanonicalSignature(signature: Buffer): boolean; function isWif(privWif: string | Buffer): boolean;
 	/**
 	 * ECDSA (secp256k1) public key.
 	 */
@@ -806,7 +806,6 @@ declare module 'dhive/crypto' {
 	} function transactionDigest(transaction: Transaction | SignedTransaction, chainId?: Buffer): Buffer; function signTransaction(transaction: Transaction, keys: PrivateKey | PrivateKey[], chainId?: Buffer): SignedTransaction;
 	/** Misc crypto utility functions. */
 	export const cryptoUtils: {
-	    bs58decode: typeof bs58decode;
 	    decodePrivate: typeof decodePrivate;
 	    doubleSha256: typeof doubleSha256;
 	    encodePrivate: typeof encodePrivate;
@@ -1948,7 +1947,7 @@ declare module 'dhive/helpers/blockchain' {
 	     * Return a asynchronous block number iterator.
 	     * @param options Feed options, can also be a block number to start from.
 	     */
-	    getBlockNumbers(options?: BlockchainStreamOptions | number): AsyncIterableIterator<number>;
+	    getBlockNumbers(options?: BlockchainStreamOptions | number): AsyncGenerator<number, void, unknown>;
 	    /**
 	     * Return a stream of block numbers, accepts same parameters as {@link getBlockNumbers}.
 	     */
@@ -1956,7 +1955,7 @@ declare module 'dhive/helpers/blockchain' {
 	    /**
 	     * Return a asynchronous block iterator, accepts same parameters as {@link getBlockNumbers}.
 	     */
-	    getBlocks(options?: BlockchainStreamOptions | number): AsyncIterableIterator<SignedBlock>;
+	    getBlocks(options?: BlockchainStreamOptions | number): AsyncGenerator<SignedBlock, void, unknown>;
 	    /**
 	     * Return a stream of blocks, accepts same parameters as {@link getBlockNumbers}.
 	     */
@@ -1964,7 +1963,7 @@ declare module 'dhive/helpers/blockchain' {
 	    /**
 	     * Return a asynchronous operation iterator, accepts same parameters as {@link getBlockNumbers}.
 	     */
-	    getOperations(options?: BlockchainStreamOptions | number): AsyncIterableIterator<AppliedOperation>;
+	    getOperations(options?: BlockchainStreamOptions | number): AsyncGenerator<AppliedOperation, void, unknown>;
 	    /**
 	     * Return a stream of operations, accepts same parameters as {@link getBlockNumbers}.
 	     */
