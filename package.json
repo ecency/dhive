@@ -1,6 +1,6 @@
 {
   "name": "@esteemapp/dhive",
-  "version": "0.12.1",
+  "version": "0.15.0",
   "description": "Hive blockchain RPC client library",
   "author": "Johan Nordberg",
   "license": "BSD-3-Clause",
@@ -40,13 +40,13 @@
     "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
+    "@babel/core": "^7.11.1",
+    "@babel/preset-env": "^7.11.0",
     "@types/bytebuffer": "^5.0.33",
     "@types/mocha": "^5.2.2",
     "@types/node": "^10.17.20",
     "@types/verror": "^1.10.3",
-    "babel-core": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
-    "babelify": "^8.0.0",
+    "babelify": "^10.0.0",
     "browserify": "^16.2.2",
     "coveralls": "^3.0.0",
     "derequire": "^2.0.6",
